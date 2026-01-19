@@ -1,0 +1,17 @@
+{
+  "id": "nordic-minimal",
+  "name": "Nordic Minimal",
+  "description": "Clean, light, and airy",
+  "bestFor": "Daytime reading, productivity, clarity",
+  "colors": {
+    "bg-primary": "#fafafa",
+    "bg-secondary": "#ffffff",
+    "text-primary": "#2c3e50",
+    "text-secondary": "#7f8c8d",
+    "accent": "#34495e",
+    "accent-light": "#ecf0f1",
+    "border": "#e0e0e0",
+    "shadow": "rgba(0, 0, 0, 0.05)"
+  }
+}
+

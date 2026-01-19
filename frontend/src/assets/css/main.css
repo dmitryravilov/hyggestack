@@ -1,0 +1,219 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Pro:wght@400;600&display=swap');
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+/* Theme: Nordic Minimal */
+.theme-nordic-minimal {
+  --bg-primary: #fafafa;
+  --bg-secondary: #ffffff;
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --accent: #34495e;
+  --accent-light: #ecf0f1;
+  --border: #e0e0e0;
+  --shadow: rgba(0, 0, 0, 0.05);
+}
+
+.theme-nordic-minimal,
+.theme-nordic-minimal #app {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Theme: Warm Coffeehouse */
+.theme-warm-coffeehouse {
+  --bg-primary: #f5f1eb;
+  --bg-secondary: #ffffff;
+  --text-primary: #3d2817;
+  --text-secondary: #8b6f47;
+  --accent: #8b7355;
+  --accent-light: #e8ddd4;
+  --border: #d4c4a8;
+  --shadow: rgba(139, 115, 85, 0.1);
+}
+
+.theme-warm-coffeehouse,
+.theme-warm-coffeehouse #app {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Theme: Soft Evening */
+.theme-soft-evening {
+  --bg-primary: #2d2d2d;
+  --bg-secondary: #3a3a3a;
+  --text-primary: #e8e8e8;
+  --text-secondary: #b0b0b0;
+  --accent: #c9a961;
+  --accent-light: #4a4a4a;
+  --border: #4a4a4a;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+.theme-soft-evening,
+.theme-soft-evening #app {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Utility classes */
+.bg-primary {
+  background-color: var(--bg-primary);
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.border-color {
+  border-color: var(--border);
+}
+
+/* Smooth transitions */
+.transition-cozy {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus/Reader mode - Universal dark mode for all themes */
+.reader-mode {
+  --reader-bg: #1a1a1a;
+  --reader-content-bg: #2a2a2a;
+  --reader-text: #e8e8e8;
+  --reader-text-secondary: #b0b0b0;
+  --reader-accent: #c9a961;
+  --reader-border: #3a3a3a;
+}
+
+.reader-mode,
+.reader-mode #app {
+  background-color: var(--reader-bg) !important;
+}
+
+.reader-mode main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.reader-mode article {
+  background-color: var(--reader-content-bg) !important;
+  color: var(--reader-text) !important;
+}
+
+.reader-mode .text-primary {
+  color: var(--reader-text) !important;
+}
+
+.reader-mode .text-secondary {
+  color: var(--reader-text-secondary) !important;
+}
+
+.reader-mode .text-accent {
+  color: var(--reader-accent) !important;
+}
+
+.reader-mode .bg-secondary {
+  background-color: var(--reader-content-bg) !important;
+}
+
+.reader-mode header {
+  background-color: var(--reader-bg) !important;
+  border-color: var(--reader-border) !important;
+}
+
+.reader-mode header .text-primary {
+  color: var(--reader-text) !important;
+}
+
+.reader-mode header .text-secondary {
+  color: var(--reader-text-secondary) !important;
+}
+
+.reader-mode a {
+  color: var(--reader-text) !important;
+}
+
+.reader-mode a:hover {
+  color: var(--reader-accent) !important;
+}
+
+/* Theme-specific reader mode adjustments */
+/* For Soft Evening theme, reader mode can be slightly lighter for contrast */
+.theme-soft-evening.reader-mode {
+  --reader-bg: #1f1f1f;
+  --reader-content-bg: #2d2d2d;
+}
+
+/* Markdown content */
+.markdown-content {
+  line-height: 1.8;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.markdown-content p {
+  margin-bottom: 1.5rem;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-content code {
+  background-color: var(--accent-light);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+.markdown-content pre {
+  background-color: var(--accent-light);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+  margin-left: 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}

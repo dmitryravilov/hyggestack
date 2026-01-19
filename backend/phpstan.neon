@@ -1,0 +1,14 @@
+parameters:
+    level: 5
+    paths:
+        - app
+    excludePaths:
+        - app/Console/Kernel.php
+    treatPhpDocTypesAsCertain: false
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        - '#Call to an undefined static method App\\Models\\(User|Category|Post|Tag)::.*#'
+        - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Builder.*::published.*#'
+        - '#Method App\\Models\\Post::scopePublished.*should return.*#'
+        - '#Access to an undefined property Illuminate\\Http\\Request::.*#'
+        - '#Access to an undefined property App\\Http\\Resources.*Resource::.*#'

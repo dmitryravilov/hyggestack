@@ -1,0 +1,17 @@
+{
+  "id": "soft-evening",
+  "name": "Soft Evening",
+  "description": "Gentle and calming",
+  "bestFor": "Night reading, focus, reduced eye strain",
+  "colors": {
+    "bg-primary": "#2d2d2d",
+    "bg-secondary": "#3a3a3a",
+    "text-primary": "#e8e8e8",
+    "text-secondary": "#b0b0b0",
+    "accent": "#c9a961",
+    "accent-light": "#4a4a4a",
+    "border": "#4a4a4a",
+    "shadow": "rgba(0, 0, 0, 0.3)"
+  }
+}
+

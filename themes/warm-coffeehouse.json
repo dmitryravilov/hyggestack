@@ -1,0 +1,18 @@
+{
+  "id": "warm-coffeehouse",
+  "name": "Warm Coffeehouse",
+  "description": "Cozy and inviting",
+  "bestFor": "Evening reading, comfort, relaxation",
+  "colors": {
+    "bg-primary": "#f5f1eb",
+    "bg-secondary": "#ffffff",
+    "text-primary": "#3d2817",
+    "text-secondary": "#8b6f47",
+    "accent": "#8b7355",
+    "accent-light": "#e8ddd4",
+    "border": "#d4c4a8",
+    "shadow": "rgba(139, 115, 85, 0.1)"
+  }
+}
+
+
