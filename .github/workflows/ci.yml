@@ -30,15 +30,15 @@ jobs:
           extensions: mbstring, xml, bcmath, pdo, pdo_mysql, fileinfo, gd
           coverage: none
 
+      - name: Install Composer dependencies
+        working-directory: ./backend
+        run: composer install --prefer-dist --no-interaction --no-progress
+
       - name: Copy .env
         working-directory: ./backend
         run: |
           cp .env.example .env || true
           php artisan key:generate
-
-      - name: Install Composer dependencies
-        working-directory: ./backend
-        run: composer install --prefer-dist --no-interaction --no-progress
 
       - name: Run database migrations
         working-directory: ./backend
