@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="mb-6 flex items-center justify-between">
-      <h2 class="text-primary font-serif text-2xl">
-        Posts
-      </h2>
+      <h2 class="text-primary font-serif text-2xl">Posts</h2>
       <button
         class="bg-accent transition-cozy rounded-lg px-4 py-2 text-white hover:opacity-80"
         @click="showCreateModal = true"
@@ -12,19 +10,13 @@
       </button>
     </div>
 
-    <div
-      v-if="loading"
-      class="py-12 text-center"
-    >
+    <div v-if="loading" class="py-12 text-center">
       <div
         class="border-accent inline-block h-12 w-12 animate-spin rounded-full border-b-2 border-t-2"
       />
     </div>
 
-    <div
-      v-else
-      class="space-y-4"
-    >
+    <div v-else class="space-y-4">
       <div
         v-for="post in posts"
         :key="post.id"
@@ -75,10 +67,7 @@
           {{ editingPost ? 'Edit Post' : 'Create Post' }}
         </h3>
 
-        <form
-          class="space-y-4"
-          @submit.prevent="savePost"
-        >
+        <form class="space-y-4" @submit.prevent="savePost">
           <div>
             <label class="text-primary mb-2 block text-sm font-medium">Title</label>
             <input
@@ -86,7 +75,7 @@
               type="text"
               required
               class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
-            >
+            />
           </div>
 
           <div>
@@ -115,14 +104,8 @@
                 v-model="postForm.category_id"
                 class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
               >
-                <option value="">
-                  None
-                </option>
-                <option
-                  v-for="cat in categories"
-                  :key="cat.id"
-                  :value="cat.id"
-                >
+                <option value="">None</option>
+                <option v-for="cat in categories" :key="cat.id" :value="cat.id">
                   {{ cat.name }}
                 </option>
               </select>
@@ -135,12 +118,8 @@
                 required
                 class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
               >
-                <option value="draft">
-                  Draft
-                </option>
-                <option value="published">
-                  Published
-                </option>
+                <option value="draft">Draft</option>
+                <option value="published">Published</option>
               </select>
             </div>
           </div>

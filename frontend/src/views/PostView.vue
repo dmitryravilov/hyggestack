@@ -2,19 +2,13 @@
   <div class="bg-primary min-h-screen">
     <AppHeader />
     <main class="container mx-auto px-4 py-12">
-      <div
-        v-if="postsStore.loading"
-        class="py-12 text-center"
-      >
+      <div v-if="postsStore.loading" class="py-12 text-center">
         <div
           class="border-accent inline-block h-12 w-12 animate-spin rounded-full border-b-2 border-t-2"
         />
       </div>
 
-      <div
-        v-else-if="postsStore.currentPost"
-        class="mx-auto max-w-4xl"
-      >
+      <div v-else-if="postsStore.currentPost" class="mx-auto max-w-4xl">
         <article class="bg-secondary transition-cozy mb-8 rounded-lg p-8 shadow-lg">
           <div class="mb-6">
             <router-link
@@ -58,13 +52,8 @@
         </div>
       </div>
 
-      <div
-        v-else
-        class="py-12 text-center"
-      >
-        <p class="text-secondary">
-          Post not found
-        </p>
+      <div v-else class="py-12 text-center">
+        <p class="text-secondary">Post not found</p>
       </div>
     </main>
   </div>
