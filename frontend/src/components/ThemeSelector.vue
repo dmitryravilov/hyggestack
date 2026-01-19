@@ -1,8 +1,8 @@
 <template>
   <div class="relative">
     <button
-      @click="showDropdown = !showDropdown"
       class="px-3 py-2 text-sm text-primary hover:text-accent transition-cozy"
+      @click="showDropdown = !showDropdown"
     >
       Theme
     </button>
@@ -14,12 +14,16 @@
       <div
         v-for="theme in themeStore.themes"
         :key="theme.id"
-        @click="selectTheme(theme.id)"
         class="p-3 rounded-lg cursor-pointer hover:bg-accent-light transition-cozy mb-2"
         :class="{ 'bg-accent-light': themeStore.currentTheme === theme.id }"
+        @click="selectTheme(theme.id)"
       >
-        <div class="font-medium text-primary">{{ theme.name }}</div>
-        <div class="text-sm text-secondary">{{ theme.description }}</div>
+        <div class="font-medium text-primary">
+          {{ theme.name }}
+        </div>
+        <div class="text-sm text-secondary">
+          {{ theme.description }}
+        </div>
       </div>
     </div>
   </div>
@@ -51,4 +55,3 @@ onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside)
 })
 </script>
-

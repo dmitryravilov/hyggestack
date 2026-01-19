@@ -20,4 +20,3 @@ marked.setOptions({
 export function renderMarkdown(markdown) {
   return marked.parse(markdown || '')
 }
-

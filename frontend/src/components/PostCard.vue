@@ -6,7 +6,9 @@
       </h2>
     </router-link>
 
-    <p class="text-secondary mb-4">{{ post.excerpt }}</p>
+    <p class="text-secondary mb-4">
+      {{ post.excerpt }}
+    </p>
 
     <div class="flex items-center gap-4 text-sm text-secondary">
       <span v-if="post.author">
@@ -15,7 +17,11 @@
       <span v-if="post.published_at">
         {{ formatDate(post.published_at) }}
       </span>
-      <span v-if="post.category" class="px-2 py-1 rounded text-xs" :style="{ backgroundColor: post.category.color + '20', color: post.category.color }">
+      <span
+        v-if="post.category"
+        class="px-2 py-1 rounded text-xs"
+        :style="{ backgroundColor: post.category.color + '20', color: post.category.color }"
+      >
         {{ post.category.name }}
       </span>
     </div>
@@ -49,4 +55,3 @@ function formatDate(dateString) {
   })
 }
 </script>
-

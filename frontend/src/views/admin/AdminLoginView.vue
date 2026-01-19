@@ -79,4 +79,3 @@ async function handleLogin() {
   loading.value = false
 }
 </script>
-

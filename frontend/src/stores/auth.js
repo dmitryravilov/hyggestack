@@ -8,20 +8,20 @@ export const useAuthStore = defineStore('auth', () => {
   const token = ref(localStorage.getItem('token'))
 
   if (token.value) {
-    api.defaults.headers.common['Authorization'] = `Bearer ${token.value}`
+    api.defaults.headers.common.Authorization = `Bearer ${token.value}`
   }
 
   async function login(email, password) {
     try {
       await axios.get(`${import.meta.env.VITE_API_URL?.replace('/api/v1', '') || 'http://localhost:8080'}/sanctum/csrf-cookie`, {
-        withCredentials: true
+        withCredentials: true,
       })
-      
+
       const response = await api.post('/login', { email, password })
       token.value = response.data.token
       user.value = response.data.user
       localStorage.setItem('token', token.value)
-      api.defaults.headers.common['Authorization'] = `Bearer ${token.value}`
+      api.defaults.headers.common.Authorization = `Bearer ${token.value}`
       return { success: true }
     } catch (error) {
       return { success: false, error: error.response?.data?.message || 'Login failed' }
@@ -31,14 +31,14 @@ export const useAuthStore = defineStore('auth', () => {
   async function register(name, email, password) {
     try {
       await axios.get(`${import.meta.env.VITE_API_URL?.replace('/api/v1', '') || 'http://localhost:8080'}/sanctum/csrf-cookie`, {
-        withCredentials: true
+        withCredentials: true,
       })
-      
+
       const response = await api.post('/register', { name, email, password, password_confirmation: password })
       token.value = response.data.token
       user.value = response.data.user
       localStorage.setItem('token', token.value)
-      api.defaults.headers.common['Authorization'] = `Bearer ${token.value}`
+      api.defaults.headers.common.Authorization = `Bearer ${token.value}`
       return { success: true }
     } catch (error) {
       return { success: false, error: error.response?.data?.message || 'Registration failed' }
@@ -54,7 +54,7 @@ export const useAuthStore = defineStore('auth', () => {
       token.value = null
       user.value = null
       localStorage.removeItem('token')
-      delete api.defaults.headers.common['Authorization']
+      delete api.defaults.headers.common.Authorization
     }
   }
 
@@ -80,10 +80,10 @@ export const useAuthStore = defineStore('auth', () => {
       return { success: true, message: response.data.message }
     } catch (error) {
       console.error('Password change error:', error.response?.data)
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: error.response?.data?.message || 'Failed to change password',
-        errors: error.response?.data?.errors || {}
+        errors: error.response?.data?.errors || {},
       }
     }
   }
@@ -111,4 +111,3 @@ export const useAuthStore = defineStore('auth', () => {
     isWriter,
   }
 })
-

@@ -187,4 +187,3 @@ onMounted(() => {
   fetchCategories()
 })
 </script>
-

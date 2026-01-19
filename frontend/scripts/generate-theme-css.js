@@ -2,7 +2,7 @@
 
 /**
  * Generate CSS from theme configuration files
- * 
+ *
  * This script reads theme JSON files and generates the corresponding
  * CSS classes to keep them in sync.
  */
@@ -47,8 +47,8 @@ function generateAllThemesCSS() {
   })
 
   const css = themes.map(theme => generateThemeCSS(theme)).join('\n')
-  
-  const header = `/* 
+
+  const header = `/*
  * Auto-generated theme CSS
  * Generated from theme configuration files in /themes directory
  * DO NOT EDIT MANUALLY - Run 'npm run generate:themes' to regenerate
@@ -69,4 +69,3 @@ try {
   console.error('❌ Error generating theme CSS:', error)
   process.exit(1)
 }
-

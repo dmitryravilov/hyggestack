@@ -2,11 +2,17 @@
   <div class="min-h-screen bg-primary">
     <AppHeader />
     <main class="container mx-auto px-4 py-12">
-      <div v-if="postsStore.loading" class="text-center py-12">
-        <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent"></div>
+      <div
+        v-if="postsStore.loading"
+        class="text-center py-12"
+      >
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent" />
       </div>
 
-      <div v-else-if="postsStore.currentPost" class="max-w-4xl mx-auto">
+      <div
+        v-else-if="postsStore.currentPost"
+        class="max-w-4xl mx-auto"
+      >
         <article class="bg-secondary rounded-lg shadow-lg p-8 mb-8 transition-cozy">
           <div class="mb-6">
             <router-link
@@ -37,21 +43,26 @@
             v-if="postsStore.currentPost.content"
             class="markdown-content text-primary"
             v-html="renderMarkdown(postsStore.currentPost.content)"
-          ></div>
+          />
         </article>
 
         <div class="flex gap-4 justify-center">
           <button
-            @click="toggleReaderMode"
             class="px-4 py-2 bg-accent text-white rounded-lg hover:opacity-80 transition-cozy"
+            @click="toggleReaderMode"
           >
             {{ readerMode ? 'Exit' : 'Enter' }} Reader Mode
           </button>
         </div>
       </div>
 
-      <div v-else class="text-center py-12">
-        <p class="text-secondary">Post not found</p>
+      <div
+        v-else
+        class="text-center py-12"
+      >
+        <p class="text-secondary">
+          Post not found
+        </p>
       </div>
     </main>
   </div>
@@ -90,4 +101,3 @@ function toggleReaderMode() {
   }
 }
 </script>
-

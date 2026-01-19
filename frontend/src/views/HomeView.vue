@@ -10,11 +10,17 @@
           A cozy space for thoughtful writing and peaceful reading
         </p>
 
-        <div v-if="postsStore.loading" class="text-center py-12">
-          <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent"></div>
+        <div
+          v-if="postsStore.loading"
+          class="text-center py-12"
+        >
+          <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent" />
         </div>
 
-        <div v-else class="space-y-8">
+        <div
+          v-else
+          class="space-y-8"
+        >
           <PostCard
             v-for="post in postsStore.posts"
             :key="post.id"
@@ -22,18 +28,31 @@
           />
         </div>
 
-        <div v-if="postsStore.posts.length === 0 && !postsStore.loading" class="text-center py-12">
-          <p class="text-secondary">No posts yet. Check back soon!</p>
+        <div
+          v-if="postsStore.posts.length === 0 && !postsStore.loading"
+          class="text-center py-12"
+        >
+          <p class="text-secondary">
+            No posts yet. Check back soon!
+          </p>
         </div>
 
         <!-- Loading more indicator -->
-        <div v-if="postsStore.loadingMore" class="text-center py-8">
-          <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-accent"></div>
+        <div
+          v-if="postsStore.loadingMore"
+          class="text-center py-8"
+        >
+          <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-accent" />
         </div>
 
         <!-- End of posts indicator -->
-        <div v-if="!postsStore.loading && !postsStore.loadingMore && postsStore.posts.length > 0 && postsStore.pagination.current_page >= postsStore.pagination.last_page" class="text-center py-8">
-          <p class="text-secondary">You've reached the end of all posts.</p>
+        <div
+          v-if="!postsStore.loading && !postsStore.loadingMore && postsStore.posts.length > 0 && postsStore.pagination.current_page >= postsStore.pagination.last_page"
+          class="text-center py-8"
+        >
+          <p class="text-secondary">
+            You've reached the end of all posts.
+          </p>
         </div>
       </div>
     </main>
@@ -59,7 +78,7 @@ function handleScroll() {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop
   const windowHeight = window.innerHeight
   const documentHeight = document.documentElement.scrollHeight
-  
+
   if (scrollTop + windowHeight >= documentHeight - 200) {
     const categorySlug = route.query.category || null
     if (!postsStore.loadingMore && postsStore.pagination.current_page < postsStore.pagination.last_page) {
@@ -81,4 +100,3 @@ watch(() => route.query.category, () => {
   fetchPosts()
 })
 </script>
-

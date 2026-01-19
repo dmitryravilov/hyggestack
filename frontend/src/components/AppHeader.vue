@@ -19,4 +19,3 @@
 import ThemeSelector from './ThemeSelector.vue'
 import CategorySelector from './CategorySelector.vue'
 </script>
-

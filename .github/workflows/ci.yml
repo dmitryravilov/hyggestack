@@ -30,6 +30,15 @@ jobs:
           extensions: mbstring, xml, bcmath, pdo, pdo_mysql, fileinfo, gd
           coverage: none
 
+      - name: Create Laravel cache directories
+        working-directory: ./backend
+        run: |
+          mkdir -p bootstrap/cache
+          mkdir -p storage/framework/cache
+          mkdir -p storage/framework/sessions
+          mkdir -p storage/framework/views
+          mkdir -p storage/logs
+
       - name: Install Composer dependencies
         working-directory: ./backend
         run: composer install --prefer-dist --no-interaction --no-progress

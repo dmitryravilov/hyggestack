@@ -1,11 +1,19 @@
 <template>
   <div class="min-h-screen bg-primary flex items-center justify-center px-4">
     <div class="max-w-md w-full bg-secondary rounded-lg shadow-lg p-8">
-      <h1 class="text-3xl font-serif text-primary mb-6 text-center">Join HyggeStack</h1>
+      <h1 class="text-3xl font-serif text-primary mb-6 text-center">
+        Join HyggeStack
+      </h1>
 
-      <form @submit.prevent="handleRegister" class="space-y-6">
+      <form
+        class="space-y-6"
+        @submit.prevent="handleRegister"
+      >
         <div>
-          <label for="name" class="block text-sm font-medium text-primary mb-2">
+          <label
+            for="name"
+            class="block text-sm font-medium text-primary mb-2"
+          >
             Name
           </label>
           <input
@@ -14,11 +22,14 @@
             type="text"
             required
             class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary focus:outline-none focus:ring-2 focus:ring-accent"
-          />
+          >
         </div>
 
         <div>
-          <label for="email" class="block text-sm font-medium text-primary mb-2">
+          <label
+            for="email"
+            class="block text-sm font-medium text-primary mb-2"
+          >
             Email
           </label>
           <input
@@ -27,11 +38,14 @@
             type="email"
             required
             class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary focus:outline-none focus:ring-2 focus:ring-accent"
-          />
+          >
         </div>
 
         <div>
-          <label for="password" class="block text-sm font-medium text-primary mb-2">
+          <label
+            for="password"
+            class="block text-sm font-medium text-primary mb-2"
+          >
             Password
           </label>
           <input
@@ -41,11 +55,14 @@
             required
             minlength="8"
             class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary focus:outline-none focus:ring-2 focus:ring-accent"
-          />
+          >
         </div>
 
         <div>
-          <label for="password_confirmation" class="block text-sm font-medium text-primary mb-2">
+          <label
+            for="password_confirmation"
+            class="block text-sm font-medium text-primary mb-2"
+          >
             Confirm Password
           </label>
           <input
@@ -55,10 +72,15 @@
             required
             minlength="8"
             class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary focus:outline-none focus:ring-2 focus:ring-accent"
-          />
+          >
         </div>
 
-        <div v-if="error" class="text-red-500 text-sm">{{ error }}</div>
+        <div
+          v-if="error"
+          class="text-red-500 text-sm"
+        >
+          {{ error }}
+        </div>
 
         <button
           type="submit"
@@ -71,7 +93,10 @@
 
       <p class="mt-6 text-center text-secondary text-sm">
         Already have an account?
-        <router-link to="/admin/login" class="text-accent hover:opacity-80">
+        <router-link
+          to="/admin/login"
+          class="text-accent hover:opacity-80"
+        >
           Login here
         </router-link>
       </p>
@@ -114,4 +139,3 @@ async function handleRegister() {
   loading.value = false
 }
 </script>
-

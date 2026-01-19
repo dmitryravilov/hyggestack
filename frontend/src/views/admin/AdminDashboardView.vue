@@ -47,9 +47,14 @@
       </div>
       <div v-else-if="activeTab === 'settings'">
         <div class="bg-secondary rounded-lg shadow p-8 max-w-md">
-          <h2 class="text-2xl font-serif text-primary mb-6">Change Password</h2>
-          
-          <form @submit.prevent="handleChangePassword" class="space-y-4">
+          <h2 class="text-2xl font-serif text-primary mb-6">
+            Change Password
+          </h2>
+
+          <form
+            class="space-y-4"
+            @submit.prevent="handleChangePassword"
+          >
             <div>
               <label for="current_password" class="block text-sm font-medium text-primary mb-2">
                 Current Password
@@ -74,11 +79,21 @@
                 required
                 minlength="8"
                 class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary focus:outline-none focus:ring-2 focus:ring-accent"
-              />
+              >
             </div>
 
-            <div v-if="passwordError" class="text-red-500 text-sm">{{ passwordError }}</div>
-            <div v-if="passwordSuccess" class="text-green-500 text-sm">{{ passwordSuccess }}</div>
+            <div
+              v-if="passwordError"
+              class="text-red-500 text-sm"
+            >
+              {{ passwordError }}
+            </div>
+            <div
+              v-if="passwordSuccess"
+              class="text-green-500 text-sm"
+            >
+              {{ passwordSuccess }}
+            </div>
 
             <button
               type="submit"
@@ -126,11 +141,11 @@ const tabs = computed(() => {
     { id: 'categories', label: 'Categories' },
     { id: 'settings', label: 'Settings' },
   ]
-  
+
   if (isAdmin.value) {
     allTabs.unshift({ id: 'users', label: 'Users' })
   }
-  
+
   return allTabs
 })
 
@@ -157,7 +172,7 @@ async function handleChangePassword() {
 
   const result = await authStore.changePassword(
     passwordForm.value.currentPassword,
-    passwordForm.value.newPassword
+    passwordForm.value.newPassword,
   )
 
   if (result.success) {
@@ -177,4 +192,3 @@ async function handleChangePassword() {
   passwordLoading.value = false
 }
 </script>
-

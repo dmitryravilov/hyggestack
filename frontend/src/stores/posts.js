@@ -48,7 +48,7 @@ export const usePostsStore = defineStore('posts', () => {
     if (loadingMore.value || pagination.value.current_page >= pagination.value.last_page) {
       return
     }
-    
+
     loadingMore.value = true
     try {
       const nextPage = pagination.value.current_page + 1
@@ -59,16 +59,14 @@ export const usePostsStore = defineStore('posts', () => {
       const response = await api.get('/posts', { params })
       const newPosts = response.data.data || []
       posts.value = [...posts.value, ...newPosts]
-      
+
       const meta = response.data.meta || {}
-        pagination.value = {
-          current_page: meta.current_page || pagination.value.current_page + 1,
-          last_page: meta.last_page || pagination.value.last_page,
-          per_page: meta.per_page || 5,
-          total: meta.total || pagination.value.total,
-        }
-    } catch (error) {
-      throw error
+      pagination.value = {
+        current_page: meta.current_page || pagination.value.current_page + 1,
+        last_page: meta.last_page || pagination.value.last_page,
+        per_page: meta.per_page || 5,
+        total: meta.total || pagination.value.total,
+      }
     } finally {
       loadingMore.value = false
     }
@@ -99,4 +97,3 @@ export const usePostsStore = defineStore('posts', () => {
     loadMorePosts,
   }
 })
-
