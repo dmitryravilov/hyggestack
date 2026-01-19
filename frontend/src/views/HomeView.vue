@@ -91,6 +91,6 @@ watch(
   () => route.query.category,
   () => {
     fetchPosts()
-  }
+  },
 )
 </script>

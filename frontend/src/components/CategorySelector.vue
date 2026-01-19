@@ -94,7 +94,7 @@ watch(
     } else {
       selectedCategory.value = null
     }
-  }
+  },
 )
 
 onUnmounted(() => {

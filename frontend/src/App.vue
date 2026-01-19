@@ -22,7 +22,7 @@ watch(
   () => themeStore.currentTheme,
   newTheme => {
     applyTheme(newTheme)
-  }
+  },
 )
 
 onMounted(async () => {

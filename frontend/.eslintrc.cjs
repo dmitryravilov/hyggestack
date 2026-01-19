@@ -10,6 +10,7 @@ module.exports = {
     'standard',
     'plugin:vue/vue3-recommended',
     'plugin:vue/vue3-strongly-recommended',
+    'prettier',
   ],
   parserOptions: {
     ecmaVersion: 2022,
@@ -32,12 +33,6 @@ module.exports = {
     'vue/no-unused-components': 'warn',
     'vue/order-in-components': 'error',
     'vue/this-in-template': 'error',
-    'comma-dangle': ['error', 'always-multiline'],
-    'space-before-function-paren': ['error', {
-      anonymous: 'always',
-      named: 'never',
-      asyncArrow: 'always',
-    }],
   },
   overrides: [
     {
