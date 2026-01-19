@@ -38,7 +38,7 @@ abstract class TestCase extends BaseTestCase
     protected function seedRoles(): void
     {
         // Check if the roles table exists (migrations might not be ready yet)
-        if (!Schema::hasTable('roles')) {
+        if (! Schema::hasTable('roles')) {
             return;
         }
 

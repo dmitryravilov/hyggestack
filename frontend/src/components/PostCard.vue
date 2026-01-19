@@ -24,10 +24,7 @@
       </span>
     </div>
 
-    <div
-      v-if="post.tags && post.tags.length > 0"
-      class="mt-4 flex flex-wrap gap-2"
-    >
+    <div v-if="post.tags && post.tags.length > 0" class="mt-4 flex flex-wrap gap-2">
       <span
         v-for="tag in post.tags"
         :key="tag.id"
