@@ -1,7 +1,7 @@
 <template>
-  <article class="bg-secondary rounded-lg shadow-lg p-6 hover:shadow-xl transition-cozy">
+  <article class="bg-secondary transition-cozy rounded-lg p-6 shadow-lg hover:shadow-xl">
     <router-link :to="{ name: 'Post', params: { slug: post.slug } }">
-      <h2 class="text-2xl font-serif text-primary mb-3 hover:text-accent transition-cozy">
+      <h2 class="text-primary hover:text-accent transition-cozy mb-3 font-serif text-2xl">
         {{ post.title }}
       </h2>
     </router-link>
@@ -10,16 +10,14 @@
       {{ post.excerpt }}
     </p>
 
-    <div class="flex items-center gap-4 text-sm text-secondary">
-      <span v-if="post.author">
-        By {{ post.author.name }}
-      </span>
+    <div class="text-secondary flex items-center gap-4 text-sm">
+      <span v-if="post.author"> By {{ post.author.name }} </span>
       <span v-if="post.published_at">
         {{ formatDate(post.published_at) }}
       </span>
       <span
         v-if="post.category"
-        class="px-2 py-1 rounded text-xs"
+        class="rounded px-2 py-1 text-xs"
         :style="{ backgroundColor: post.category.color + '20', color: post.category.color }"
       >
         {{ post.category.name }}
@@ -30,7 +28,7 @@
       <span
         v-for="tag in post.tags"
         :key="tag.id"
-        class="px-2 py-1 text-xs bg-accent-light rounded text-secondary"
+        class="bg-accent-light text-secondary rounded px-2 py-1 text-xs"
       >
         #{{ tag.name }}
       </span>

@@ -1,20 +1,17 @@
 <template>
-  <div class="min-h-screen bg-primary">
-    <div class="bg-secondary border-b border-color shadow-sm">
+  <div class="bg-primary min-h-screen">
+    <div class="bg-secondary border-color border-b shadow-sm">
       <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
-          <h1 class="text-2xl font-serif text-primary">Admin Dashboard</h1>
+          <h1 class="text-primary font-serif text-2xl">Admin Dashboard</h1>
           <div class="flex items-center gap-4">
             <span class="text-secondary">{{ authStore.user?.name }}</span>
-            <router-link
-              to="/"
-              class="text-primary hover:text-accent transition-cozy"
-            >
+            <router-link to="/" class="text-primary hover:text-accent transition-cozy">
               View Site
             </router-link>
             <button
               @click="handleLogout"
-              class="px-4 py-2 text-sm bg-accent text-white rounded-lg hover:opacity-80 transition-cozy"
+              class="bg-accent transition-cozy rounded-lg px-4 py-2 text-sm text-white hover:opacity-80"
             >
               Logout
             </button>
@@ -24,12 +21,12 @@
     </div>
 
     <div class="container mx-auto px-4 py-8">
-      <nav class="flex gap-4 mb-8 border-b border-color">
+      <nav class="border-color mb-8 flex gap-4 border-b">
         <button
           v-for="tab in tabs"
           :key="tab.id"
           @click="activeTab = tab.id"
-          class="px-4 py-2 text-primary hover:text-accent transition-cozy border-b-2"
+          class="text-primary hover:text-accent transition-cozy border-b-2 px-4 py-2"
           :class="activeTab === tab.id ? 'border-accent text-accent' : 'border-transparent'"
         >
           {{ tab.label }}
@@ -46,17 +43,12 @@
         <AdminCategoriesView />
       </div>
       <div v-else-if="activeTab === 'settings'">
-        <div class="bg-secondary rounded-lg shadow p-8 max-w-md">
-          <h2 class="text-2xl font-serif text-primary mb-6">
-            Change Password
-          </h2>
+        <div class="bg-secondary max-w-md rounded-lg p-8 shadow">
+          <h2 class="text-primary mb-6 font-serif text-2xl">Change Password</h2>
 
-          <form
-            class="space-y-4"
-            @submit.prevent="handleChangePassword"
-          >
+          <form class="space-y-4" @submit.prevent="handleChangePassword">
             <div>
-              <label for="current_password" class="block text-sm font-medium text-primary mb-2">
+              <label for="current_password" class="text-primary mb-2 block text-sm font-medium">
                 Current Password
               </label>
               <input
@@ -64,12 +56,12 @@
                 v-model="passwordForm.currentPassword"
                 type="password"
                 required
-                class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary focus:outline-none focus:ring-2 focus:ring-accent"
+                class="border-color bg-primary text-primary focus:ring-accent w-full rounded-lg border px-4 py-2 focus:outline-none focus:ring-2"
               />
             </div>
 
             <div>
-              <label for="new_password" class="block text-sm font-medium text-primary mb-2">
+              <label for="new_password" class="text-primary mb-2 block text-sm font-medium">
                 New Password
               </label>
               <input
@@ -78,27 +70,21 @@
                 type="password"
                 required
                 minlength="8"
-                class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary focus:outline-none focus:ring-2 focus:ring-accent"
-              >
+                class="border-color bg-primary text-primary focus:ring-accent w-full rounded-lg border px-4 py-2 focus:outline-none focus:ring-2"
+              />
             </div>
 
-            <div
-              v-if="passwordError"
-              class="text-red-500 text-sm"
-            >
+            <div v-if="passwordError" class="text-sm text-red-500">
               {{ passwordError }}
             </div>
-            <div
-              v-if="passwordSuccess"
-              class="text-green-500 text-sm"
-            >
+            <div v-if="passwordSuccess" class="text-sm text-green-500">
               {{ passwordSuccess }}
             </div>
 
             <button
               type="submit"
               :disabled="passwordLoading"
-              class="w-full px-4 py-2 bg-accent text-white rounded-lg hover:opacity-80 transition-cozy disabled:opacity-50"
+              class="bg-accent transition-cozy w-full rounded-lg px-4 py-2 text-white hover:opacity-80 disabled:opacity-50"
             >
               {{ passwordLoading ? 'Changing password...' : 'Change Password' }}
             </button>
@@ -172,7 +158,7 @@ async function handleChangePassword() {
 
   const result = await authStore.changePassword(
     passwordForm.value.currentPassword,
-    passwordForm.value.newPassword,
+    passwordForm.value.newPassword
   )
 
   if (result.success) {

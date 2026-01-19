@@ -20,8 +20,7 @@ class PostController extends Controller
 {
     public function __construct(
         private readonly PostService $postService
-    ) {
-    }
+    ) {}
 
     public function index(Request $request): AnonymousResourceCollection
     {
@@ -63,12 +62,12 @@ class PostController extends Controller
     {
         $post = $this->postService->getPostBySlug($slug);
 
-        if (!$post) {
+        if (! $post) {
             abort(Response::HTTP_NOT_FOUND, 'Post not found');
         }
 
         if ($post->status !== PostStatus::PUBLISHED) {
-            if (!$request->user() || !$request->user()->can('view', $post)) {
+            if (! $request->user() || ! $request->user()->can('view', $post)) {
                 abort(Response::HTTP_FORBIDDEN, 'Unauthorized');
             }
         }
@@ -80,7 +79,7 @@ class PostController extends Controller
     {
         $post = $this->postService->getPostById($id);
 
-        if (!$post) {
+        if (! $post) {
             abort(Response::HTTP_NOT_FOUND, 'Post not found');
         }
 
@@ -95,7 +94,7 @@ class PostController extends Controller
     {
         $post = $this->postService->getPostById($id);
 
-        if (!$post) {
+        if (! $post) {
             abort(Response::HTTP_NOT_FOUND, 'Post not found');
         }
 

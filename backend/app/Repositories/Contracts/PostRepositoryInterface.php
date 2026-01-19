@@ -27,4 +27,3 @@ interface PostRepositoryInterface
 
     public function getAll(int $perPage = 15): LengthAwarePaginator;
 }
-

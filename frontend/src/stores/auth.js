@@ -13,9 +13,12 @@ export const useAuthStore = defineStore('auth', () => {
 
   async function login(email, password) {
     try {
-      await axios.get(`${import.meta.env.VITE_API_URL?.replace('/api/v1', '') || 'http://localhost:8080'}/sanctum/csrf-cookie`, {
-        withCredentials: true,
-      })
+      await axios.get(
+        `${import.meta.env.VITE_API_URL?.replace('/api/v1', '') || 'http://localhost:8080'}/sanctum/csrf-cookie`,
+        {
+          withCredentials: true,
+        }
+      )
 
       const response = await api.post('/login', { email, password })
       token.value = response.data.token
@@ -30,11 +33,19 @@ export const useAuthStore = defineStore('auth', () => {
 
   async function register(name, email, password) {
     try {
-      await axios.get(`${import.meta.env.VITE_API_URL?.replace('/api/v1', '') || 'http://localhost:8080'}/sanctum/csrf-cookie`, {
-        withCredentials: true,
-      })
+      await axios.get(
+        `${import.meta.env.VITE_API_URL?.replace('/api/v1', '') || 'http://localhost:8080'}/sanctum/csrf-cookie`,
+        {
+          withCredentials: true,
+        }
+      )
 
-      const response = await api.post('/register', { name, email, password, password_confirmation: password })
+      const response = await api.post('/register', {
+        name,
+        email,
+        password,
+        password_confirmation: password,
+      })
       token.value = response.data.token
       user.value = response.data.user
       localStorage.setItem('token', token.value)

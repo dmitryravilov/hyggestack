@@ -34,4 +34,3 @@ class TagController extends Controller
         return new TagResource($tag);
     }
 }
-

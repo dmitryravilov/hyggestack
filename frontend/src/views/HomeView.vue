@@ -1,58 +1,45 @@
 <template>
-  <div class="min-h-screen bg-primary">
+  <div class="bg-primary min-h-screen">
     <AppHeader />
     <main class="container mx-auto px-4 py-12">
-      <div class="max-w-4xl mx-auto">
-        <h1 class="text-4xl font-serif text-primary mb-8 text-center">
-          Welcome to HyggeStack
-        </h1>
-        <p class="text-xl text-secondary text-center mb-12">
+      <div class="mx-auto max-w-4xl">
+        <h1 class="text-primary mb-8 text-center font-serif text-4xl">Welcome to HyggeStack</h1>
+        <p class="text-secondary mb-12 text-center text-xl">
           A cozy space for thoughtful writing and peaceful reading
         </p>
 
-        <div
-          v-if="postsStore.loading"
-          class="text-center py-12"
-        >
-          <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent" />
-        </div>
-
-        <div
-          v-else
-          class="space-y-8"
-        >
-          <PostCard
-            v-for="post in postsStore.posts"
-            :key="post.id"
-            :post="post"
+        <div v-if="postsStore.loading" class="py-12 text-center">
+          <div
+            class="border-accent inline-block h-12 w-12 animate-spin rounded-full border-b-2 border-t-2"
           />
         </div>
 
-        <div
-          v-if="postsStore.posts.length === 0 && !postsStore.loading"
-          class="text-center py-12"
-        >
-          <p class="text-secondary">
-            No posts yet. Check back soon!
-          </p>
+        <div v-else class="space-y-8">
+          <PostCard v-for="post in postsStore.posts" :key="post.id" :post="post" />
+        </div>
+
+        <div v-if="postsStore.posts.length === 0 && !postsStore.loading" class="py-12 text-center">
+          <p class="text-secondary">No posts yet. Check back soon!</p>
         </div>
 
         <!-- Loading more indicator -->
-        <div
-          v-if="postsStore.loadingMore"
-          class="text-center py-8"
-        >
-          <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-accent" />
+        <div v-if="postsStore.loadingMore" class="py-8 text-center">
+          <div
+            class="border-accent inline-block h-8 w-8 animate-spin rounded-full border-b-2 border-t-2"
+          />
         </div>
 
         <!-- End of posts indicator -->
         <div
-          v-if="!postsStore.loading && !postsStore.loadingMore && postsStore.posts.length > 0 && postsStore.pagination.current_page >= postsStore.pagination.last_page"
-          class="text-center py-8"
+          v-if="
+            !postsStore.loading &&
+            !postsStore.loadingMore &&
+            postsStore.posts.length > 0 &&
+            postsStore.pagination.current_page >= postsStore.pagination.last_page
+          "
+          class="py-8 text-center"
         >
-          <p class="text-secondary">
-            You've reached the end of all posts.
-          </p>
+          <p class="text-secondary">You've reached the end of all posts.</p>
         </div>
       </div>
     </main>
@@ -81,7 +68,10 @@ function handleScroll() {
 
   if (scrollTop + windowHeight >= documentHeight - 200) {
     const categorySlug = route.query.category || null
-    if (!postsStore.loadingMore && postsStore.pagination.current_page < postsStore.pagination.last_page) {
+    if (
+      !postsStore.loadingMore &&
+      postsStore.pagination.current_page < postsStore.pagination.last_page
+    ) {
       postsStore.loadMorePosts(categorySlug)
     }
   }
@@ -96,7 +86,10 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 
-watch(() => route.query.category, () => {
-  fetchPosts()
-})
+watch(
+  () => route.query.category,
+  () => {
+    fetchPosts()
+  }
+)
 </script>

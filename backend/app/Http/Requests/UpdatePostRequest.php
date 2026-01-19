@@ -15,14 +15,14 @@ class UpdatePostRequest extends FormRequest
     {
         $postId = $this->route('id');
 
-        if (!$postId) {
+        if (! $postId) {
             return false;
         }
 
         /** @var Post|null $post */
         $post = Post::query()->find($postId);
 
-        if (!$post) {
+        if (! $post) {
             return false;
         }
 
@@ -31,7 +31,7 @@ class UpdatePostRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        if ($this->has('title') && !$this->has('slug')) {
+        if ($this->has('title') && ! $this->has('slug')) {
             $this->merge([
                 'slug' => Str::slug($this->input('title')),
             ]);

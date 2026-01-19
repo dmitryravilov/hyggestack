@@ -27,4 +27,3 @@ class AppServiceProvider extends ServiceProvider
         Model::shouldBeStrict();
     }
 }
-

@@ -43,7 +43,7 @@ class AuthTest extends TestCase
         $user = User::factory()->create();
         $token = $user->createToken('test-token')->plainTextToken;
 
-        $response = $this->withHeader('Authorization', 'Bearer ' . $token)
+        $response = $this->withHeader('Authorization', 'Bearer '.$token)
             ->getJson('/api/v1/me');
 
         $response->assertStatus(200)
@@ -122,7 +122,7 @@ class AuthTest extends TestCase
         $user = User::factory()->create();
         $token = $user->createToken('test-token')->plainTextToken;
 
-        $response = $this->withHeader('Authorization', 'Bearer ' . $token)
+        $response = $this->withHeader('Authorization', 'Bearer '.$token)
             ->postJson('/api/v1/logout');
 
         $response->assertStatus(200)
@@ -169,4 +169,3 @@ class AuthTest extends TestCase
             ->assertJsonValidationErrors(['password']);
     }
 }
-

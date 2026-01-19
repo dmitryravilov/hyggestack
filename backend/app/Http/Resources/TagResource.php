@@ -27,4 +27,3 @@ class TagResource extends JsonResource
         ];
     }
 }
-

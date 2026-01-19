@@ -1,41 +1,40 @@
 <template>
   <div>
-    <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-serif text-primary">Users</h2>
+    <div class="mb-6 flex items-center justify-between">
+      <h2 class="text-primary font-serif text-2xl">Users</h2>
       <button
         @click="showCreateModal = true"
-        class="px-4 py-2 bg-accent text-white rounded-lg hover:opacity-80 transition-cozy"
+        class="bg-accent transition-cozy rounded-lg px-4 py-2 text-white hover:opacity-80"
       >
         Create User
       </button>
     </div>
 
-    <div v-if="loading" class="text-center py-12">
-      <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent"></div>
+    <div v-if="loading" class="py-12 text-center">
+      <div
+        class="border-accent inline-block h-12 w-12 animate-spin rounded-full border-b-2 border-t-2"
+      ></div>
     </div>
 
-    <div v-else class="bg-secondary rounded-lg shadow overflow-hidden">
-      <table class="min-w-full divide-y divide-color">
+    <div v-else class="bg-secondary overflow-hidden rounded-lg shadow">
+      <table class="divide-color min-w-full divide-y">
         <thead class="bg-accent-light">
           <tr>
-            <th class="px-6 py-3 text-left text-xs font-medium text-primary uppercase">Name</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-primary uppercase">Email</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-primary uppercase">Role</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-primary uppercase">Actions</th>
+            <th class="text-primary px-6 py-3 text-left text-xs font-medium uppercase">Name</th>
+            <th class="text-primary px-6 py-3 text-left text-xs font-medium uppercase">Email</th>
+            <th class="text-primary px-6 py-3 text-left text-xs font-medium uppercase">Role</th>
+            <th class="text-primary px-6 py-3 text-left text-xs font-medium uppercase">Actions</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-color">
+        <tbody class="divide-color divide-y">
           <tr v-for="user in users" :key="user.id" class="hover:bg-accent-light">
-            <td class="px-6 py-4 whitespace-nowrap text-primary">{{ user.name }}</td>
-            <td class="px-6 py-4 whitespace-nowrap text-secondary">{{ user.email }}</td>
-            <td class="px-6 py-4 whitespace-nowrap text-secondary">
+            <td class="text-primary whitespace-nowrap px-6 py-4">{{ user.name }}</td>
+            <td class="text-secondary whitespace-nowrap px-6 py-4">{{ user.email }}</td>
+            <td class="text-secondary whitespace-nowrap px-6 py-4">
               {{ user.roles?.[0]?.name || 'N/A' }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm">
-              <button
-                @click="editUser(user)"
-                class="text-accent hover:opacity-80 mr-4"
-              >
+            <td class="whitespace-nowrap px-6 py-4 text-sm">
+              <button @click="editUser(user)" class="text-accent mr-4 hover:opacity-80">
                 Edit
               </button>
               <button
@@ -54,52 +53,54 @@
     <!-- Create/Edit Modal -->
     <div
       v-if="showCreateModal || editingUser"
-      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
       @click.self="closeModal"
     >
-      <div class="bg-secondary rounded-lg shadow-lg p-8 max-w-md w-full mx-4">
-        <h3 class="text-2xl font-serif text-primary mb-6">
+      <div class="bg-secondary mx-4 w-full max-w-md rounded-lg p-8 shadow-lg">
+        <h3 class="text-primary mb-6 font-serif text-2xl">
           {{ editingUser ? 'Edit User' : 'Create User' }}
         </h3>
 
         <form @submit.prevent="saveUser" class="space-y-4">
           <div>
-            <label class="block text-sm font-medium text-primary mb-2">Name</label>
+            <label class="text-primary mb-2 block text-sm font-medium">Name</label>
             <input
               v-model="userForm.name"
               type="text"
               required
-              class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary"
+              class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
             />
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-primary mb-2">Email</label>
+            <label class="text-primary mb-2 block text-sm font-medium">Email</label>
             <input
               v-model="userForm.email"
               type="email"
               required
-              class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary"
+              class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
             />
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-primary mb-2">Password</label>
+            <label class="text-primary mb-2 block text-sm font-medium">Password</label>
             <input
               v-model="userForm.password"
               type="password"
               :required="!editingUser"
-              class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary"
+              class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
             />
-            <p v-if="editingUser" class="text-sm text-secondary mt-1">Leave blank to keep current password</p>
+            <p v-if="editingUser" class="text-secondary mt-1 text-sm">
+              Leave blank to keep current password
+            </p>
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-primary mb-2">Role</label>
+            <label class="text-primary mb-2 block text-sm font-medium">Role</label>
             <select
               v-model="userForm.role"
               required
-              class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary"
+              class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
             >
               <option value="admin">Admin</option>
               <option value="writer">Writer</option>
@@ -109,14 +110,14 @@
           <div class="flex gap-4 pt-4">
             <button
               type="submit"
-              class="flex-1 px-4 py-2 bg-accent text-white rounded-lg hover:opacity-80"
+              class="bg-accent flex-1 rounded-lg px-4 py-2 text-white hover:opacity-80"
             >
               {{ editingUser ? 'Update' : 'Create' }}
             </button>
             <button
               type="button"
               @click="closeModal"
-              class="flex-1 px-4 py-2 border border-color text-primary rounded-lg hover:opacity-80"
+              class="border-color text-primary flex-1 rounded-lg border px-4 py-2 hover:opacity-80"
             >
               Cancel
             </button>

@@ -1,31 +1,29 @@
 <template>
-  <div class="min-h-screen bg-primary">
+  <div class="bg-primary min-h-screen">
     <AppHeader />
     <main class="container mx-auto px-4 py-12">
-      <div class="max-w-6xl mx-auto">
-        <h1 class="text-3xl font-serif text-primary mb-8">
-          Write a New Post
-        </h1>
+      <div class="mx-auto max-w-6xl">
+        <h1 class="text-primary mb-8 font-serif text-3xl">Write a New Post</h1>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <!-- Editor -->
-          <div class="bg-secondary rounded-lg shadow-lg p-6">
-            <div class="space-y-4 mb-6">
+          <div class="bg-secondary rounded-lg p-6 shadow-lg">
+            <div class="mb-6 space-y-4">
               <input
                 v-model="title"
                 type="text"
                 placeholder="Post title..."
-                class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary focus:outline-none focus:ring-2 focus:ring-accent text-2xl font-serif"
-              >
+                class="border-color bg-primary text-primary focus:ring-accent w-full rounded-lg border px-4 py-2 font-serif text-2xl focus:outline-none focus:ring-2"
+              />
               <textarea
                 v-model="content"
                 placeholder="Write your post in Markdown..."
                 rows="20"
-                class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary focus:outline-none focus:ring-2 focus:ring-accent font-mono text-sm"
+                class="border-color bg-primary text-primary focus:ring-accent w-full rounded-lg border px-4 py-2 font-mono text-sm focus:outline-none focus:ring-2"
               />
             </div>
             <button
-              class="px-6 py-2 bg-accent text-white rounded-lg hover:opacity-80 transition-cozy"
+              class="bg-accent transition-cozy rounded-lg px-6 py-2 text-white hover:opacity-80"
               @click="savePost"
             >
               Save Draft
@@ -33,10 +31,8 @@
           </div>
 
           <!-- Preview -->
-          <div class="bg-secondary rounded-lg shadow-lg p-6">
-            <h2 class="text-xl font-serif text-primary mb-4">
-              Preview
-            </h2>
+          <div class="bg-secondary rounded-lg p-6 shadow-lg">
+            <h2 class="text-primary mb-4 font-serif text-xl">Preview</h2>
             <div
               class="markdown-content text-primary"
               v-html="renderMarkdown(content || '*Start writing to see preview...*')"

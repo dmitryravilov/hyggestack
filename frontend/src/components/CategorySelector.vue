@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <button
-      class="px-3 py-2 text-sm text-primary hover:text-accent transition-cozy"
+      class="text-primary hover:text-accent transition-cozy px-3 py-2 text-sm"
       @click="showDropdown = !showDropdown"
     >
       {{ selectedCategory ? selectedCategory.name : 'Categories' }}
@@ -9,31 +9,26 @@
 
     <div
       v-if="showDropdown"
-      class="absolute right-0 mt-2 w-64 bg-secondary border border-color rounded-lg shadow-lg p-4 z-10 max-h-96 overflow-y-auto"
+      class="bg-secondary border-color absolute right-0 z-10 mt-2 max-h-96 w-64 overflow-y-auto rounded-lg border p-4 shadow-lg"
     >
       <div
-        class="p-3 rounded-lg cursor-pointer hover:bg-accent-light transition-cozy mb-2"
+        class="hover:bg-accent-light transition-cozy mb-2 cursor-pointer rounded-lg p-3"
         :class="{ 'bg-accent-light': !selectedCategory }"
         @click="selectCategory(null)"
       >
-        <div class="font-medium text-primary">
-          All Categories
-        </div>
+        <div class="text-primary font-medium">All Categories</div>
       </div>
       <div
         v-for="category in categories"
         :key="category.id"
-        class="p-3 rounded-lg cursor-pointer hover:bg-accent-light transition-cozy mb-2"
+        class="hover:bg-accent-light transition-cozy mb-2 cursor-pointer rounded-lg p-3"
         :class="{ 'bg-accent-light': selectedCategory?.id === category.id }"
         @click="selectCategory(category)"
       >
-        <div class="font-medium text-primary">
+        <div class="text-primary font-medium">
           {{ category.name }}
         </div>
-        <div
-          v-if="category.posts_count"
-          class="text-sm text-secondary"
-        >
+        <div v-if="category.posts_count" class="text-secondary text-sm">
           {{ category.posts_count }} {{ category.posts_count === 1 ? 'post' : 'posts' }}
         </div>
       </div>
@@ -90,13 +85,16 @@ onMounted(() => {
   })
 })
 
-watch(() => route.query.category, (newCategory) => {
-  if (newCategory && categories.value.length > 0) {
-    selectedCategory.value = categories.value.find(c => c.slug === newCategory) || null
-  } else {
-    selectedCategory.value = null
+watch(
+  () => route.query.category,
+  newCategory => {
+    if (newCategory && categories.value.length > 0) {
+      selectedCategory.value = categories.value.find(c => c.slug === newCategory) || null
+    } else {
+      selectedCategory.value = null
+    }
   }
-})
+)
 
 onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside)

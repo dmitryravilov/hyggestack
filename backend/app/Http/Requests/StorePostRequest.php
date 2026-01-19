@@ -18,7 +18,7 @@ class StorePostRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        if (!$this->has('slug') && $this->has('title')) {
+        if (! $this->has('slug') && $this->has('title')) {
             $this->merge([
                 'slug' => Str::slug($this->input('title')),
             ]);

@@ -14,8 +14,7 @@ class PostService
 {
     public function __construct(
         private readonly PostRepositoryInterface $postRepository
-    ) {
-    }
+    ) {}
 
     public function getPublishedPosts(int $perPage = 15): LengthAwarePaginator
     {
@@ -64,7 +63,7 @@ class PostService
     public function updatePost(Post $post, array $data): Post
     {
         if (isset($data['status']) && $data['status'] === PostStatus::PUBLISHED->value) {
-            if ((!isset($data['published_at']) || empty($data['published_at'])) && !$post->published_at) {
+            if ((! isset($data['published_at']) || empty($data['published_at'])) && ! $post->published_at) {
                 $data['published_at'] = now();
             }
         }

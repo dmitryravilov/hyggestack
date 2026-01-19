@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="app"
-    :class="themeClass"
-  >
+  <div id="app" :class="themeClass">
     <router-view />
   </div>
 </template>
@@ -20,9 +17,12 @@ const themeClass = computed(() => {
   return `theme-${themeStore.currentTheme}`
 })
 
-watch(() => themeStore.currentTheme, (newTheme) => {
-  applyTheme(newTheme)
-})
+watch(
+  () => themeStore.currentTheme,
+  newTheme => {
+    applyTheme(newTheme)
+  }
+)
 
 onMounted(async () => {
   applyTheme(themeStore.currentTheme)
@@ -35,6 +35,8 @@ onMounted(async () => {
 <style>
 #app {
   min-height: 100vh;
-  transition: background-color 0.6s ease, color 0.6s ease;
+  transition:
+    background-color 0.6s ease,
+    color 0.6s ease;
 }
 </style>

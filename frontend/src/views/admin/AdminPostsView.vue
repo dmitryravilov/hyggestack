@@ -1,45 +1,47 @@
 <template>
   <div>
-    <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-serif text-primary">Posts</h2>
+    <div class="mb-6 flex items-center justify-between">
+      <h2 class="text-primary font-serif text-2xl">Posts</h2>
       <button
         @click="showCreateModal = true"
-        class="px-4 py-2 bg-accent text-white rounded-lg hover:opacity-80 transition-cozy"
+        class="bg-accent transition-cozy rounded-lg px-4 py-2 text-white hover:opacity-80"
       >
         Create Post
       </button>
     </div>
 
-    <div v-if="loading" class="text-center py-12">
-      <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent"></div>
+    <div v-if="loading" class="py-12 text-center">
+      <div
+        class="border-accent inline-block h-12 w-12 animate-spin rounded-full border-b-2 border-t-2"
+      ></div>
     </div>
 
     <div v-else class="space-y-4">
       <div
         v-for="post in posts"
         :key="post.id"
-        class="bg-secondary rounded-lg shadow p-6 hover:shadow-lg transition-cozy"
+        class="bg-secondary transition-cozy rounded-lg p-6 shadow hover:shadow-lg"
       >
-        <div class="flex justify-between items-start">
+        <div class="flex items-start justify-between">
           <div class="flex-1">
-            <h3 class="text-xl font-serif text-primary mb-2">{{ post.title }}</h3>
+            <h3 class="text-primary mb-2 font-serif text-xl">{{ post.title }}</h3>
             <p class="text-secondary mb-2">{{ post.excerpt }}</p>
-            <div class="flex gap-4 text-sm text-secondary">
+            <div class="text-secondary flex gap-4 text-sm">
               <span>Status: {{ post.status }}</span>
               <span v-if="post.category">Category: {{ post.category.name }}</span>
               <span v-if="post.author">Author: {{ post.author.name }}</span>
             </div>
           </div>
-          <div class="flex gap-2 ml-4">
+          <div class="ml-4 flex gap-2">
             <button
               @click="editPost(post)"
-              class="px-4 py-2 bg-accent text-white rounded-lg hover:opacity-80 transition-cozy"
+              class="bg-accent transition-cozy rounded-lg px-4 py-2 text-white hover:opacity-80"
             >
               Edit
             </button>
             <button
               @click="deletePost(post.id)"
-              class="px-4 py-2 bg-red-500 text-white rounded-lg hover:opacity-80 transition-cozy"
+              class="transition-cozy rounded-lg bg-red-500 px-4 py-2 text-white hover:opacity-80"
             >
               Delete
             </button>
@@ -51,50 +53,52 @@
     <!-- Create/Edit Modal -->
     <div
       v-if="showCreateModal || editingPost"
-      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"
       @click.self="closeModal"
     >
-      <div class="bg-secondary rounded-lg shadow-lg p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-        <h3 class="text-2xl font-serif text-primary mb-6">
+      <div
+        class="bg-secondary mx-4 max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-lg p-8 shadow-lg"
+      >
+        <h3 class="text-primary mb-6 font-serif text-2xl">
           {{ editingPost ? 'Edit Post' : 'Create Post' }}
         </h3>
 
         <form @submit.prevent="savePost" class="space-y-4">
           <div>
-            <label class="block text-sm font-medium text-primary mb-2">Title</label>
+            <label class="text-primary mb-2 block text-sm font-medium">Title</label>
             <input
               v-model="postForm.title"
               type="text"
               required
-              class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary"
+              class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
             />
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-primary mb-2">Excerpt</label>
+            <label class="text-primary mb-2 block text-sm font-medium">Excerpt</label>
             <textarea
               v-model="postForm.excerpt"
               rows="3"
-              class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary"
+              class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
             ></textarea>
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-primary mb-2">Content</label>
+            <label class="text-primary mb-2 block text-sm font-medium">Content</label>
             <textarea
               v-model="postForm.content"
               rows="10"
               required
-              class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary font-mono"
+              class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2 font-mono"
             ></textarea>
           </div>
 
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium text-primary mb-2">Category</label>
+              <label class="text-primary mb-2 block text-sm font-medium">Category</label>
               <select
                 v-model="postForm.category_id"
-                class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary"
+                class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
               >
                 <option value="">None</option>
                 <option v-for="cat in categories" :key="cat.id" :value="cat.id">
@@ -104,11 +108,11 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-primary mb-2">Status</label>
+              <label class="text-primary mb-2 block text-sm font-medium">Status</label>
               <select
                 v-model="postForm.status"
                 required
-                class="w-full px-4 py-2 border border-color rounded-lg bg-primary text-primary"
+                class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
               >
                 <option value="draft">Draft</option>
                 <option value="published">Published</option>
@@ -119,14 +123,14 @@
           <div class="flex gap-4 pt-4">
             <button
               type="submit"
-              class="flex-1 px-4 py-2 bg-accent text-white rounded-lg hover:opacity-80"
+              class="bg-accent flex-1 rounded-lg px-4 py-2 text-white hover:opacity-80"
             >
               {{ editingPost ? 'Update' : 'Create' }}
             </button>
             <button
               type="button"
               @click="closeModal"
-              class="flex-1 px-4 py-2 border border-color text-primary rounded-lg hover:opacity-80"
+              class="border-color text-primary flex-1 rounded-lg border px-4 py-2 hover:opacity-80"
             >
               Cancel
             </button>
@@ -182,7 +186,7 @@ function editPost(post) {
     title: post.title,
     excerpt: post.excerpt || '',
     content: post.content || '',
-    category_id: post.category_id || (post.category?.id || null),
+    category_id: post.category_id || post.category?.id || null,
     status: post.status || 'draft',
   }
 }

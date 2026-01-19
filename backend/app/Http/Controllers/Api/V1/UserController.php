@@ -54,7 +54,7 @@ class UserController extends Controller
 
         $rules = [
             'name' => ['sometimes', 'required', 'string', 'max:255'],
-            'email' => ['sometimes', 'required', 'string', 'email', 'max:255', 'unique:users,email,' . $id],
+            'email' => ['sometimes', 'required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],
             'bio' => ['nullable', 'string'],
             'role' => ['sometimes', 'required', 'string', 'in:admin,writer'],
         ];
@@ -104,4 +104,3 @@ class UserController extends Controller
         return response()->json(['message' => 'User deleted successfully']);
     }
 }
-

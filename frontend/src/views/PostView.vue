@@ -1,33 +1,29 @@
 <template>
-  <div class="min-h-screen bg-primary">
+  <div class="bg-primary min-h-screen">
     <AppHeader />
     <main class="container mx-auto px-4 py-12">
-      <div
-        v-if="postsStore.loading"
-        class="text-center py-12"
-      >
-        <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent" />
+      <div v-if="postsStore.loading" class="py-12 text-center">
+        <div
+          class="border-accent inline-block h-12 w-12 animate-spin rounded-full border-b-2 border-t-2"
+        />
       </div>
 
-      <div
-        v-else-if="postsStore.currentPost"
-        class="max-w-4xl mx-auto"
-      >
-        <article class="bg-secondary rounded-lg shadow-lg p-8 mb-8 transition-cozy">
+      <div v-else-if="postsStore.currentPost" class="mx-auto max-w-4xl">
+        <article class="bg-secondary transition-cozy mb-8 rounded-lg p-8 shadow-lg">
           <div class="mb-6">
             <router-link
               :to="{ name: 'Home' }"
-              class="text-accent hover:opacity-80 transition-cozy inline-flex items-center mb-4"
+              class="text-accent transition-cozy mb-4 inline-flex items-center hover:opacity-80"
             >
               ← Back to posts
             </router-link>
           </div>
 
-          <h1 class="text-4xl font-serif text-primary mb-4">
+          <h1 class="text-primary mb-4 font-serif text-4xl">
             {{ postsStore.currentPost.title }}
           </h1>
 
-          <div class="flex items-center gap-4 text-secondary mb-6">
+          <div class="text-secondary mb-6 flex items-center gap-4">
             <span v-if="postsStore.currentPost.author">
               By {{ postsStore.currentPost.author.name }}
             </span>
@@ -46,9 +42,9 @@
           />
         </article>
 
-        <div class="flex gap-4 justify-center">
+        <div class="flex justify-center gap-4">
           <button
-            class="px-4 py-2 bg-accent text-white rounded-lg hover:opacity-80 transition-cozy"
+            class="bg-accent transition-cozy rounded-lg px-4 py-2 text-white hover:opacity-80"
             @click="toggleReaderMode"
           >
             {{ readerMode ? 'Exit' : 'Enter' }} Reader Mode
@@ -56,13 +52,8 @@
         </div>
       </div>
 
-      <div
-        v-else
-        class="text-center py-12"
-      >
-        <p class="text-secondary">
-          Post not found
-        </p>
+      <div v-else class="py-12 text-center">
+        <p class="text-secondary">Post not found</p>
       </div>
     </main>
   </div>

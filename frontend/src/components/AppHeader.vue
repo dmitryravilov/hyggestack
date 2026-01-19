@@ -1,8 +1,11 @@
 <template>
-  <header class="bg-secondary border-b border-color shadow-sm">
+  <header class="bg-secondary border-color border-b shadow-sm">
     <div class="container mx-auto px-4 py-4">
       <div class="flex items-center justify-between">
-        <router-link to="/" class="text-2xl font-serif text-primary hover:opacity-80 transition-cozy">
+        <router-link
+          to="/"
+          class="text-primary transition-cozy font-serif text-2xl hover:opacity-80"
+        >
           HyggeStack
         </router-link>
 

@@ -37,7 +37,8 @@ ${cssVars}
 }
 
 function generateAllThemesCSS() {
-  const themeFiles = fs.readdirSync(themesDir)
+  const themeFiles = fs
+    .readdirSync(themesDir)
     .filter(file => file.endsWith('.json'))
     .map(file => path.join(themesDir, file))
 

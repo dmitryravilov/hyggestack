@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <button
-      class="px-3 py-2 text-sm text-primary hover:text-accent transition-cozy"
+      class="text-primary hover:text-accent transition-cozy px-3 py-2 text-sm"
       @click="showDropdown = !showDropdown"
     >
       Theme
@@ -9,19 +9,19 @@
 
     <div
       v-if="showDropdown"
-      class="absolute right-0 mt-2 w-64 bg-secondary border border-color rounded-lg shadow-lg p-4 z-10"
+      class="bg-secondary border-color absolute right-0 z-10 mt-2 w-64 rounded-lg border p-4 shadow-lg"
     >
       <div
         v-for="theme in themeStore.themes"
         :key="theme.id"
-        class="p-3 rounded-lg cursor-pointer hover:bg-accent-light transition-cozy mb-2"
+        class="hover:bg-accent-light transition-cozy mb-2 cursor-pointer rounded-lg p-3"
         :class="{ 'bg-accent-light': themeStore.currentTheme === theme.id }"
         @click="selectTheme(theme.id)"
       >
-        <div class="font-medium text-primary">
+        <div class="text-primary font-medium">
           {{ theme.name }}
         </div>
-        <div class="text-sm text-secondary">
+        <div class="text-secondary text-sm">
           {{ theme.description }}
         </div>
       </div>

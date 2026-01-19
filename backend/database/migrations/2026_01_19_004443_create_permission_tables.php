@@ -119,7 +119,7 @@ return new class extends Migration
         } catch (QueryException $e) {
             // Cache table may not exist yet during initial migration
             // This is safe to ignore as the cache will be cleared on next request
-            if (!str_contains($e->getMessage(), 'does not exist')) {
+            if (! str_contains($e->getMessage(), 'does not exist')) {
                 throw $e;
             }
         }

@@ -2,11 +2,7 @@ import nordicMinimal from '@themes/nordic-minimal.json'
 import warmCoffeehouse from '@themes/warm-coffeehouse.json'
 import softEvening from '@themes/soft-evening.json'
 
-export const themes = [
-  softEvening,
-  nordicMinimal,
-  warmCoffeehouse,
-]
+export const themes = [softEvening, nordicMinimal, warmCoffeehouse]
 
 export function getTheme(themeId) {
   return themes.find(theme => theme.id === themeId) || null

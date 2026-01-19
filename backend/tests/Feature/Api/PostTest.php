@@ -74,4 +74,3 @@ class PostTest extends TestCase
         ]);
     }
 }
-
