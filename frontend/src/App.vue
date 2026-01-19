@@ -1,5 +1,8 @@
 <template>
-  <div id="app" :class="themeClass">
+  <div
+    id="app"
+    :class="themeClass"
+  >
     <router-view />
   </div>
 </template>
@@ -17,11 +20,12 @@ const themeClass = computed(() => {
   return `theme-${themeStore.currentTheme}`
 })
 
+// eslint-disable-next-line no-unused-expressions
 watch(
   () => themeStore.currentTheme,
   newTheme => {
     applyTheme(newTheme)
-  }
+  },
 )
 
 onMounted(async () => {

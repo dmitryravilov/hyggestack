@@ -16,7 +16,9 @@
         :class="{ 'bg-accent-light': !selectedCategory }"
         @click="selectCategory(null)"
       >
-        <div class="text-primary font-medium">All Categories</div>
+        <div class="text-primary font-medium">
+          All Categories
+        </div>
       </div>
       <div
         v-for="category in categories"
@@ -28,7 +30,10 @@
         <div class="text-primary font-medium">
           {{ category.name }}
         </div>
-        <div v-if="category.posts_count" class="text-secondary text-sm">
+        <div
+          v-if="category.posts_count"
+          class="text-secondary text-sm"
+        >
           {{ category.posts_count }} {{ category.posts_count === 1 ? 'post' : 'posts' }}
         </div>
       </div>
@@ -85,6 +90,7 @@ onMounted(() => {
   })
 })
 
+// eslint-disable-next-line no-unused-expressions
 watch(
   () => route.query.category,
   newCategory => {
@@ -93,7 +99,7 @@ watch(
     } else {
       selectedCategory.value = null
     }
-  }
+  },
 )
 
 onUnmounted(() => {
