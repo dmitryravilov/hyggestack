@@ -72,6 +72,6 @@ class User extends Authenticatable
      */
     public function isWriter(): bool
     {
-        return $this->hasRole('writer') || $this->hasRole('author') || $this->isAdmin();
+        return $this->hasRole('writer') || $this->isAdmin();
     }
 }

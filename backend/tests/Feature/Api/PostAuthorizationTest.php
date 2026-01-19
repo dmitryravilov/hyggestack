@@ -18,9 +18,9 @@ class PostAuthorizationTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * Test that author can update their own post.
+     * Test that writer can update their own post.
      */
-    public function test_author_can_update_own_post(): void
+    public function test_writer_can_update_own_post(): void
     {
         $writer = User::factory()->create();
         $writer->assignRole('writer');
@@ -89,9 +89,9 @@ class PostAuthorizationTest extends TestCase
     }
 
     /**
-     * Test that author can delete their own post.
+     * Test that writer can delete their own post.
      */
-    public function test_author_can_delete_own_post(): void
+    public function test_writer_can_delete_own_post(): void
     {
         $writer = User::factory()->create();
         $writer->assignRole('writer');
@@ -150,9 +150,9 @@ class PostAuthorizationTest extends TestCase
     }
 
     /**
-     * Test that draft posts are only visible to author and admin.
+     * Test that draft posts are only visible to writer and admin.
      */
-    public function test_draft_post_only_visible_to_author_and_admin(): void
+    public function test_draft_post_only_visible_to_writer_and_admin(): void
     {
         $writer1 = User::factory()->create();
         $writer1->assignRole('writer');
@@ -169,7 +169,7 @@ class PostAuthorizationTest extends TestCase
             'slug' => 'draft-post',
         ]);
 
-        // Author can view
+        // Writer can view
         $response = $this->actingAs($writer1, 'sanctum')
             ->getJson("/api/v1/posts/{$post->slug}");
         $response->assertStatus(200);

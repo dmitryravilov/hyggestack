@@ -50,12 +50,12 @@ class PostTest extends TestCase
     }
 
     /**
-     * Test that authors can create posts.
+     * Test that writers can create posts.
      */
-    public function test_author_can_create_post(): void
+    public function test_writer_can_create_post(): void
     {
         $user = User::factory()->create();
-        $user->assignRole('author');
+        $user->assignRole('writer');
 
         $response = $this->actingAs($user, 'sanctum')
             ->postJson('/api/v1/posts', [

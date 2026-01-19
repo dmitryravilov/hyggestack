@@ -58,8 +58,8 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
         Route::delete('/users/{id}', [UserController::class, 'destroy']);
     });
 
-    // Posts (writer/author/admin only)
-    Route::middleware('role:writer|author|admin')->group(function () {
+    // Posts (writer/admin only)
+    Route::middleware('role:writer|admin')->group(function () {
         Route::get('/admin/posts', [PostController::class, 'adminIndex']);
         Route::post('/posts', [PostController::class, 'store']);
         Route::put('/posts/{id}', [PostController::class, 'update']);

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Models\Role;
 
 abstract class TestCase extends BaseTestCase
@@ -33,22 +33,22 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Seed roles if they don't already exist.
+     * Uses firstOrCreate to safely create roles even in parallel test environments.
      */
     protected function seedRoles(): void
     {
-        try {
-            // Check if roles already exist to avoid duplicate key errors
-            if (Role::where('name', 'admin')->where('guard_name', 'web')->doesntExist()) {
-                $this->seed(RoleSeeder::class);
-            }
-        } catch (\Exception $e) {
-            // If seeding fails (e.g., table doesn't exist yet), try again
-            // This can happen in parallel testing where migrations might not be ready
-            try {
-                $this->seed(RoleSeeder::class);
-            } catch (\Exception $e2) {
-                // Ignore - migrations might not be ready yet
-            }
+        // Check if the roles table exists (migrations might not be ready yet)
+        if (!Schema::hasTable('roles')) {
+            return;
         }
+
+        // Clear permissions cache to ensure Spatie picks up new roles
+        $this->app->make(\Spatie\Permission\PermissionRegistrar::class)
+            ->forgetCachedPermissions();
+
+        // Use firstOrCreate which handles race conditions in parallel tests
+        // It will create the role if it doesn't exist, or return the existing one
+        Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
+        Role::firstOrCreate(['name' => 'writer', 'guard_name' => 'web']);
     }
 }
