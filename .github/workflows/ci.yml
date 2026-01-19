@@ -69,6 +69,17 @@ jobs:
         run: vendor/bin/phpstan analyse --memory-limit=1G
         continue-on-error: false
 
+      - name: Dump autoloader
+        working-directory: ./backend
+        run: composer dump-autoload
+
+      - name: Verify test directories exist
+        working-directory: ./backend
+        run: |
+          test -d tests/Unit && test -d tests/Feature
+          ls -la tests/Unit/ || true
+          ls -la tests/Feature/ || true
+
       - name: Run PHPUnit Tests
         working-directory: ./backend
         env:

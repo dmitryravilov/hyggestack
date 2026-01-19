@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="mb-6 flex items-center justify-between">
-      <h2 class="text-primary font-serif text-2xl">Categories</h2>
+      <h2 class="text-primary font-serif text-2xl">
+        Categories
+      </h2>
       <button
         class="bg-accent transition-cozy rounded-lg px-4 py-2 text-white hover:opacity-80"
         @click="showCreateModal = true"
@@ -10,13 +12,19 @@
       </button>
     </div>
 
-    <div v-if="loading" class="py-12 text-center">
+    <div
+      v-if="loading"
+      class="py-12 text-center"
+    >
       <div
         class="border-accent inline-block h-12 w-12 animate-spin rounded-full border-b-2 border-t-2"
       />
     </div>
 
-    <div v-else class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div
+      v-else
+      class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+    >
       <div
         v-for="category in categories"
         :key="category.id"
@@ -27,7 +35,10 @@
             <h3 class="text-primary mb-2 font-serif text-xl">
               {{ category.name }}
             </h3>
-            <p v-if="category.description" class="text-secondary mb-2">
+            <p
+              v-if="category.description"
+              class="text-secondary mb-2"
+            >
               {{ category.description }}
             </p>
             <p class="text-secondary text-sm">
@@ -63,7 +74,10 @@
           {{ editingCategory ? 'Edit Category' : 'Create Category' }}
         </h3>
 
-        <form class="space-y-4" @submit.prevent="saveCategory">
+        <form
+          class="space-y-4"
+          @submit.prevent="saveCategory"
+        >
           <div>
             <label class="text-primary mb-2 block text-sm font-medium">Name</label>
             <input
@@ -71,7 +85,7 @@
               type="text"
               required
               class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
-            />
+            >
           </div>
 
           <div>
@@ -90,7 +104,7 @@
               type="text"
               placeholder="#FF5733"
               class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
-            />
+            >
           </div>
 
           <div class="flex gap-4 pt-4">
