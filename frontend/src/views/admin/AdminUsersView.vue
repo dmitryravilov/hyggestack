@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="mb-6 flex items-center justify-between">
-      <h2 class="text-primary font-serif text-2xl">
-        Users
-      </h2>
+      <h2 class="text-primary font-serif text-2xl">Users</h2>
       <button
         class="bg-accent transition-cozy rounded-lg px-4 py-2 text-white hover:opacity-80"
         @click="showCreateModal = true"
@@ -12,42 +10,24 @@
       </button>
     </div>
 
-    <div
-      v-if="loading"
-      class="py-12 text-center"
-    >
+    <div v-if="loading" class="py-12 text-center">
       <div
         class="border-accent inline-block h-12 w-12 animate-spin rounded-full border-b-2 border-t-2"
       />
     </div>
 
-    <div
-      v-else
-      class="bg-secondary overflow-hidden rounded-lg shadow"
-    >
+    <div v-else class="bg-secondary overflow-hidden rounded-lg shadow">
       <table class="divide-color min-w-full divide-y">
         <thead class="bg-accent-light">
           <tr>
-            <th class="text-primary px-6 py-3 text-left text-xs font-medium uppercase">
-              Name
-            </th>
-            <th class="text-primary px-6 py-3 text-left text-xs font-medium uppercase">
-              Email
-            </th>
-            <th class="text-primary px-6 py-3 text-left text-xs font-medium uppercase">
-              Role
-            </th>
-            <th class="text-primary px-6 py-3 text-left text-xs font-medium uppercase">
-              Actions
-            </th>
+            <th class="text-primary px-6 py-3 text-left text-xs font-medium uppercase">Name</th>
+            <th class="text-primary px-6 py-3 text-left text-xs font-medium uppercase">Email</th>
+            <th class="text-primary px-6 py-3 text-left text-xs font-medium uppercase">Role</th>
+            <th class="text-primary px-6 py-3 text-left text-xs font-medium uppercase">Actions</th>
           </tr>
         </thead>
         <tbody class="divide-color divide-y">
-          <tr
-            v-for="user in users"
-            :key="user.id"
-            class="hover:bg-accent-light"
-          >
+          <tr v-for="user in users" :key="user.id" class="hover:bg-accent-light">
             <td class="text-primary whitespace-nowrap px-6 py-4">
               {{ user.name }}
             </td>
@@ -58,10 +38,7 @@
               {{ user.roles?.[0]?.name || 'N/A' }}
             </td>
             <td class="whitespace-nowrap px-6 py-4 text-sm">
-              <button
-                class="text-accent mr-4 hover:opacity-80"
-                @click="editUser(user)"
-              >
+              <button class="text-accent mr-4 hover:opacity-80" @click="editUser(user)">
                 Edit
               </button>
               <button
@@ -88,10 +65,7 @@
           {{ editingUser ? 'Edit User' : 'Create User' }}
         </h3>
 
-        <form
-          class="space-y-4"
-          @submit.prevent="saveUser"
-        >
+        <form class="space-y-4" @submit.prevent="saveUser">
           <div>
             <label class="text-primary mb-2 block text-sm font-medium">Name</label>
             <input
@@ -99,7 +73,7 @@
               type="text"
               required
               class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
-            >
+            />
           </div>
 
           <div>
@@ -109,7 +83,7 @@
               type="email"
               required
               class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
-            >
+            />
           </div>
 
           <div>
@@ -119,11 +93,8 @@
               type="password"
               :required="!editingUser"
               class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
-            >
-            <p
-              v-if="editingUser"
-              class="text-secondary mt-1 text-sm"
-            >
+            />
+            <p v-if="editingUser" class="text-secondary mt-1 text-sm">
               Leave blank to keep current password
             </p>
           </div>
@@ -135,12 +106,8 @@
               required
               class="border-color bg-primary text-primary w-full rounded-lg border px-4 py-2"
             >
-              <option value="admin">
-                Admin
-              </option>
-              <option value="writer">
-                Writer
-              </option>
+              <option value="admin">Admin</option>
+              <option value="writer">Writer</option>
             </select>
           </div>
 

@@ -3,12 +3,8 @@
     <AppHeader />
     <main class="container mx-auto px-4 py-12">
       <div class="mx-auto max-w-4xl text-center">
-        <h1 class="text-primary mb-4 font-serif text-6xl">
-          404
-        </h1>
-        <h2 class="text-primary mb-6 font-serif text-3xl">
-          Page Not Found
-        </h2>
+        <h1 class="text-primary mb-4 font-serif text-6xl">404</h1>
+        <h2 class="text-primary mb-6 font-serif text-3xl">Page Not Found</h2>
         <p class="text-secondary mb-8 text-xl">
           The page you're looking for doesn't exist or has been moved.
         </p>

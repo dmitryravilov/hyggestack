@@ -158,7 +158,7 @@ async function handleChangePassword() {
 
   const result = await authStore.changePassword(
     passwordForm.value.currentPassword,
-    passwordForm.value.newPassword,
+    passwordForm.value.newPassword
   )
 
   if (result.success) {

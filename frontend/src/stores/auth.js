@@ -17,7 +17,7 @@ export const useAuthStore = defineStore('auth', () => {
         `${import.meta.env.VITE_API_URL?.replace('/api/v1', '') || 'http://localhost:8080'}/sanctum/csrf-cookie`,
         {
           withCredentials: true,
-        },
+        }
       )
 
       const response = await api.post('/login', { email, password })
@@ -37,7 +37,7 @@ export const useAuthStore = defineStore('auth', () => {
         `${import.meta.env.VITE_API_URL?.replace('/api/v1', '') || 'http://localhost:8080'}/sanctum/csrf-cookie`,
         {
           withCredentials: true,
-        },
+        }
       )
 
       const response = await api.post('/register', {
