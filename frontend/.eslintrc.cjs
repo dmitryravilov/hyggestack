@@ -39,4 +39,12 @@ module.exports = {
       asyncArrow: 'always',
     }],
   },
+  overrides: [
+    {
+      files: ['src/views/PostView.vue', 'src/views/WriteView.vue'],
+      rules: {
+        'vue/no-v-html': 'off',
+      },
+    },
+  ],
 }

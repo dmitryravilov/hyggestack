@@ -16,9 +16,7 @@
         :class="{ 'bg-accent-light': !selectedCategory }"
         @click="selectCategory(null)"
       >
-        <div class="text-primary font-medium">
-          All Categories
-        </div>
+        <div class="text-primary font-medium">All Categories</div>
       </div>
       <div
         v-for="category in categories"
@@ -30,10 +28,7 @@
         <div class="text-primary font-medium">
           {{ category.name }}
         </div>
-        <div
-          v-if="category.posts_count"
-          class="text-secondary text-sm"
-        >
+        <div v-if="category.posts_count" class="text-secondary text-sm">
           {{ category.posts_count }} {{ category.posts_count === 1 ? 'post' : 'posts' }}
         </div>
       </div>
@@ -99,7 +94,7 @@ watch(
     } else {
       selectedCategory.value = null
     }
-  },
+  }
 )
 
 onUnmounted(() => {
