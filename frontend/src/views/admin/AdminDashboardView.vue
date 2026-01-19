@@ -3,10 +3,15 @@
     <div class="bg-secondary border-color border-b shadow-sm">
       <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
-          <h1 class="text-primary font-serif text-2xl">Admin Dashboard</h1>
+          <h1 class="text-primary font-serif text-2xl">
+            Admin Dashboard
+          </h1>
           <div class="flex items-center gap-4">
             <span class="text-secondary">{{ authStore.user?.name }}</span>
-            <router-link to="/" class="text-primary hover:text-accent transition-cozy">
+            <router-link
+              to="/"
+              class="text-primary hover:text-accent transition-cozy"
+            >
               View Site
             </router-link>
             <button
@@ -44,11 +49,19 @@
       </div>
       <div v-else-if="activeTab === 'settings'">
         <div class="bg-secondary max-w-md rounded-lg p-8 shadow">
-          <h2 class="text-primary mb-6 font-serif text-2xl">Change Password</h2>
+          <h2 class="text-primary mb-6 font-serif text-2xl">
+            Change Password
+          </h2>
 
-          <form class="space-y-4" @submit.prevent="handleChangePassword">
+          <form
+            class="space-y-4"
+            @submit.prevent="handleChangePassword"
+          >
             <div>
-              <label for="current_password" class="text-primary mb-2 block text-sm font-medium">
+              <label
+                for="current_password"
+                class="text-primary mb-2 block text-sm font-medium"
+              >
                 Current Password
               </label>
               <input
@@ -57,11 +70,14 @@
                 type="password"
                 required
                 class="border-color bg-primary text-primary focus:ring-accent w-full rounded-lg border px-4 py-2 focus:outline-none focus:ring-2"
-              />
+              >
             </div>
 
             <div>
-              <label for="new_password" class="text-primary mb-2 block text-sm font-medium">
+              <label
+                for="new_password"
+                class="text-primary mb-2 block text-sm font-medium"
+              >
                 New Password
               </label>
               <input
@@ -71,13 +87,19 @@
                 required
                 minlength="8"
                 class="border-color bg-primary text-primary focus:ring-accent w-full rounded-lg border px-4 py-2 focus:outline-none focus:ring-2"
-              />
+              >
             </div>
 
-            <div v-if="passwordError" class="text-sm text-red-500">
+            <div
+              v-if="passwordError"
+              class="text-sm text-red-500"
+            >
               {{ passwordError }}
             </div>
-            <div v-if="passwordSuccess" class="text-sm text-green-500">
+            <div
+              v-if="passwordSuccess"
+              class="text-sm text-green-500"
+            >
               {{ passwordSuccess }}
             </div>
 
@@ -158,7 +180,7 @@ async function handleChangePassword() {
 
   const result = await authStore.changePassword(
     passwordForm.value.currentPassword,
-    passwordForm.value.newPassword
+    passwordForm.value.newPassword,
   )
 
   if (result.success) {

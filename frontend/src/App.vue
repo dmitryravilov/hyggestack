@@ -1,5 +1,8 @@
 <template>
-  <div id="app" :class="themeClass">
+  <div
+    id="app"
+    :class="themeClass"
+  >
     <router-view />
   </div>
 </template>
@@ -22,7 +25,7 @@ watch(
   () => themeStore.currentTheme,
   newTheme => {
     applyTheme(newTheme)
-  }
+  },
 )
 
 onMounted(async () => {
